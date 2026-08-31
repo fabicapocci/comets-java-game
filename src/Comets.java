@@ -1,6 +1,10 @@
-// Fabrizzio Capocci
-// Assignment 8
-// COP3330
+/**
+ * Comets
+ *
+ * An Asteroids-inspired arcade game built with Java Swing.
+ * Features real-time movement, projectile mechanics, collision detection,
+ * destructible comets, scoring, lives, and persistent high scores.
+ */
 
 import javax.swing.*;
 import java.awt.*;
@@ -219,7 +223,7 @@ class Bullet extends GameObject {
 }
 
 /**
- * Represents a cometobject.
+ * Represents a comet in the game
  */
 class Comet extends GameObject {
     public static final int LARGE = 3;
@@ -229,7 +233,6 @@ class Comet extends GameObject {
     public static final int RADIUS_MEDIUM = 25;
     public static final int RADIUS_SMALL = 15;
 
-    // These fields remain final as their properties don't change during the game
     private final double rotationSpeed;
     private final int size;
 
@@ -345,7 +348,6 @@ class GamePanel extends JPanel implements Runnable, KeyListener {
         spawnInitialComets(5);
     }
 
-    // Extra credit
     private void loadHighScore() {
         try {
             if (Files.exists(HIGH_SCORE_FILE)) {
@@ -530,12 +532,11 @@ class GamePanel extends JPanel implements Runnable, KeyListener {
         if (lives > 0) {
             synchronized (comets) {
 
-                // Implement comet/ship collision
+                // Check for collisions between the ship and active comets
                 Iterator<Comet> cometIterator = comets.iterator();
                 boolean collisionOccurred = false;
-                // Loop through all the bullets
+                
                 while (cometIterator.hasNext()) {
-                    // Check if the bullet is within the radius of the comet using Point2D.distance
                     Comet c = cometIterator.next();
                     double dist = Point2D.distance(ship.getX(), ship.getY(), c.getX(), c.getY());
                     // buffer of a few pixels so collisions feel fair
@@ -543,7 +544,7 @@ class GamePanel extends JPanel implements Runnable, KeyListener {
                         // collision
                         lives--;
                         collisionOccurred = true;
-                        // If it is, remove the bullet, remove the comet, and increment the score by 10*the size of the comet.
+                        
                         if (lives > 0) {
                             // Reset ship to center and clear bullets
                             ship = new Ship(Comets.GAME_WIDTH / 2.0, Comets.GAME_HEIGHT / 2.0);
@@ -558,7 +559,7 @@ class GamePanel extends JPanel implements Runnable, KeyListener {
                     }
                 }
                 if (collisionOccurred) {
-                    // nothing else here for now
+                    
                 }
             }
         }
@@ -747,7 +748,7 @@ class GamePanel extends JPanel implements Runnable, KeyListener {
             if (lives <= 0) {
                 saveHighScoreIfNeeded();
             } else {
-                // clear bullets as penalty? the spec didn't require clearing on failure.
+                // Clear active bullets after a failed hyperspace jump
                 synchronized (bullets) {
                     bullets.clear();
                 }
