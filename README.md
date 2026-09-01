@@ -6,7 +6,7 @@ The game features real-time ship movement, projectile mechanics, collision detec
 
 ## Gameplay
 
-![Comets Gameplay](screenshots/gameplay.png)
+![Comets Gameplay](screenshots/Gameplay.png)
 
 ## Features
 
