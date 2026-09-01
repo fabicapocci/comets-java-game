@@ -4,6 +4,12 @@ Comets is an Asteroids-inspired arcade game built with Java Swing.
 
 The game features real-time ship movement, projectile mechanics, collision detection, destructible comets, scoring, lives, persistent high scores, and a hyperspace mechanic.
 
+## Gameplay
+
+![Comets Gameplay](screenshots/gameplay.png)
+
+## Features
+
 ## Features
 
 - Real-time ship movement with acceleration, friction, and rotation
